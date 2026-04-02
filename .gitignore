@@ -24,9 +24,14 @@ dist-ssr
 *.sw?
 
 # amplify
-.amplify
+.amplifys
 amplify_outputs*
 amplifyconfiguration*
 
 
+
+# python
+__pycache__/
+*.py[cod]
+__init__.py
 tmp/

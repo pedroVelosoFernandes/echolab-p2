@@ -1,14 +1,16 @@
 import { fetchAuthSession } from 'aws-amplify/auth';
 import outputs from '../../amplify_outputs.json';
 
+const normalizeBaseUrl = (url: string): string => url.replace(/\/+$/, '');
+
 const getBaseUrl = (): string => {
   // Read from amplify_outputs.json
   const endpoint = outputs?.custom?.API?.echolabHttpApi?.endpoint;
-  if (endpoint) return endpoint;
+  if (endpoint) return normalizeBaseUrl(endpoint);
   
   // Fallback to env var
   const envUrl = import.meta.env.VITE_ECHOLAB_API_URL;
-  if (envUrl) return envUrl;
+  if (envUrl) return normalizeBaseUrl(envUrl);
   
   throw new Error('EchoLab API endpoint not configured');
 };
