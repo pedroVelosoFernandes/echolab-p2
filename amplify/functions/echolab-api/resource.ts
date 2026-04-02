@@ -63,4 +63,6 @@ export const echolabApi = defineFunction((scope) =>
       },
     }),
   })
-);
+, {
+  resourceGroupName: "echolabApiStack",
+});
