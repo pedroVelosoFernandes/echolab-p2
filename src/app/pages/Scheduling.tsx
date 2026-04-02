@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Calendar, Clock, Globe, Link as LinkIcon, Repeat, CalendarRange, MapPin, Package, AlertCircle, Star, Plus, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-import contentBgImage from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 import { useMessagePacks } from '../../hooks/queries';
 import { Tutorial, useTutorial } from '../components/Tutorial';
 import { tutorialMetadata } from '../data/tutorials';

@@ -5,7 +5,7 @@ import { useUserContext } from '../../hooks/useUserContext';
 import { Plus, X, Volume2, Check, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { PageHeader } from '../components/PageHeader';
-import contentBgImage from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 import { useVoices, useUserVoiceSelections } from '../../hooks/queries';
 import { useQueryClient } from '@tanstack/react-query';
 import { Tutorial, useTutorial } from '../components/Tutorial';

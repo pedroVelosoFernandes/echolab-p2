@@ -4,8 +4,8 @@ import { Mic, Zap, Shield, Home as HomeIcon, ListMusic, Music, Settings, BarChar
 import { motion, AnimatePresence } from 'motion/react';
 
 // Use same backgrounds as dashboard for authenticity
-import dashboardBg from 'figma:asset/8542e48dd8de51097ffa4fb3b8192a03ffa65fb4.png';
-import contentBg from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import dashboardBg from '../../assets/8542e48dd8de51097ffa4fb3b8192a03ffa65fb4.png';
+import contentBg from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 
 export function Landing() {
   const [activeTab, setActiveTab] = useState('home');

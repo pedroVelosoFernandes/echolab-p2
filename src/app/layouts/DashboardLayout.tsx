@@ -3,8 +3,8 @@ import { Outlet, Link, useNavigate, useLocation } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
 import { useUserContext } from '../../hooks/useUserContext';
 import { Home, Mic, Settings, ListMusic, Music, LogOut, Shield, ChevronDown, Calendar, Radio, Headphones } from 'lucide-react';
-import bgImage from 'figma:asset/8542e48dd8de51097ffa4fb3b8192a03ffa65fb4.png';
-import contentBgImage from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import bgImage from '../../assets/8542e48dd8de51097ffa4fb3b8192a03ffa65fb4.png';
+import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 
 export function DashboardLayout() {
   const { user, loading: authLoading, signOut } = useAuth();

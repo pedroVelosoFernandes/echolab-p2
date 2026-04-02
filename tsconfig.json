@@ -20,6 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["tmp/original-src/src"],
+  "include": ["src"],
+  "exclude": ["src/imports/pasted_text", "tmp"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

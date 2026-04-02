@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Radio, Wifi, WifiOff, Play, Pause, Volume2, Edit2, Trash2, Plus, Monitor } from 'lucide-react';
 import { toast } from 'sonner';
-import contentBgImage from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 import { useUserContext } from '../../hooks/useUserContext';
 import { Tutorial, useTutorial } from '../components/Tutorial';
 import { tutorialMetadata } from '../data/tutorials';

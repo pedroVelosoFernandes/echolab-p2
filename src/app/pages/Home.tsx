@@ -2,7 +2,7 @@ import { useUserContext } from '../../hooks/useUserContext';
 import { Mic2, Sliders, Package, Settings, FolderOpen, FileAudio, Sparkles, BookOpen, Lightbulb, Radio, Calendar, Tv2 } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
 import { Link, useNavigate } from 'react-router';
-import contentBgImage from 'figma:asset/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
 import { tutorialMetadata } from '../data/tutorials';
 
 export function Home() {

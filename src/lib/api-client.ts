@@ -1,5 +1,5 @@
 import { fetchAuthSession } from 'aws-amplify/auth';
-import outputs from '../imports/amplify_outputs.json';
+import outputs from '../../amplify_outputs.json';
 
 const getBaseUrl = (): string => {
   // Read from amplify_outputs.json
