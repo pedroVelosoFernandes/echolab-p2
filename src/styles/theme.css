@@ -1,0 +1,198 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 13px;
+  
+  /* Linear Dark Theme Colors */
+  --background: #121314;
+  --foreground: #e6e6e6;
+  
+  --card: #1a1a1a;
+  --card-foreground: #e6e6e6;
+  
+  --popover: #1a1a1a;
+  --popover-foreground: #e6e6e6;
+  
+  --primary: #5e6ad2;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #1a1a1a;
+  --secondary-foreground: #A6ABB2;
+  
+  --muted: #151515;
+  --muted-foreground: #A6ABB2;
+  
+  --accent: #5e6ad2;
+  --accent-foreground: #ffffff;
+  
+  --destructive: #e5484d;
+  --destructive-foreground: #ffffff;
+  
+  --border: #2a2a2a;
+  --input: #1a1a1a;
+  --input-background: #1a1a1a;
+  --input-border: #2a2a2a;
+  
+  --switch-background: #3a3a3a;
+  
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  
+  --ring: #5e6ad2;
+  
+  --chart-1: #00a8c5;
+  --chart-2: #5e6ad2;
+  --chart-3: #f76b15;
+  --chart-4: #ffc53d;
+  --chart-5: #e5484d;
+  
+  --radius: 0.5rem;
+  
+  --sidebar: #101112;
+  --sidebar-foreground: #A6ABB2;
+  --sidebar-primary: #5e6ad2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #e6e6e6;
+  --sidebar-border: #1a1a1a;
+  --sidebar-ring: #5e6ad2;
+  
+  /* Text colors for utility classes */
+  --text-primary: #e6e6e6;
+  --text-secondary: #A6ABB2;
+  --text-muted: #A6ABB2;
+  --text-disabled: #666666;
+  
+  /* Background colors */
+  --bg-primary: #121314;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #151515;
+  --bg-elevated: #1f1f1f;
+  
+  /* Border colors */
+  --border-primary: #2a2a2a;
+  --border-secondary: #333333;
+  --border-dashed: #2a2a2a;
+}
+
+.dark {
+  /* Already dark by default */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-input-border: var(--input-border);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: 1.077rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    color: var(--text-primary);
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    color: var(--text-primary);
+  }
+
+  h3 {
+    font-size: 0.923rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    color: var(--text-primary);
+  }
+
+  h4 {
+    font-size: 0.846rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    color: var(--text-secondary);
+  }
+
+  label {
+    font-size: 0.923rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    color: var(--text-secondary);
+  }
+
+  button {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+  }
+
+  input, textarea, select {
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    line-height: normal;
+  }
+  
+  p {
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    line-height: normal;
+    color: var(--text-secondary);
+  }
+}

@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["tmp/original-src/src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
