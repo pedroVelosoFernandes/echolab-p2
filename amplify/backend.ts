@@ -3,6 +3,7 @@ import { RemovalPolicy, Stack } from 'aws-cdk-lib';
 import { CorsHttpMethod, HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
 import { HttpJwtAuthorizer } from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
+import { AwsCustomResource, AwsCustomResourcePolicy, PhysicalResourceId } from 'aws-cdk-lib/custom-resources';
 import { AttributeType, BillingMode, Table } from 'aws-cdk-lib/aws-dynamodb';
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Function as LambdaFunction } from 'aws-cdk-lib/aws-lambda';
@@ -16,6 +17,36 @@ const backend = defineBackend({
   auth,
   data,
   echolabApi,
+});
+
+// Ensure the Cognito 'admin' group exists, without failing deploys if it's already present.
+// (CloudFormation's native UserPoolGroup resource is not idempotent when the group was created out-of-band.)
+const authStack = backend.auth.stack;
+const userPoolId = backend.auth.resources.userPool.userPoolId;
+new AwsCustomResource(authStack, 'EnsureAdminGroup', {
+  policy: AwsCustomResourcePolicy.fromSdkCalls({ resources: AwsCustomResourcePolicy.ANY_RESOURCE }),
+  onCreate: {
+    service: 'CognitoIdentityServiceProvider',
+    action: 'createGroup',
+    parameters: {
+      GroupName: 'admin',
+      UserPoolId: userPoolId,
+      Description: 'Echolab administrators',
+    },
+    physicalResourceId: PhysicalResourceId.of(`${userPoolId}/group/admin`),
+    ignoreErrorCodesMatching: 'GroupExistsException',
+  },
+  onUpdate: {
+    service: 'CognitoIdentityServiceProvider',
+    action: 'createGroup',
+    parameters: {
+      GroupName: 'admin',
+      UserPoolId: userPoolId,
+      Description: 'Echolab administrators',
+    },
+    physicalResourceId: PhysicalResourceId.of(`${userPoolId}/group/admin`),
+    ignoreErrorCodesMatching: 'GroupExistsException',
+  },
 });
 
 // Reuse the stack created for the function's resource group.
