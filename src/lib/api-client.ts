@@ -1,5 +1,17 @@
 import { fetchAuthSession } from 'aws-amplify/auth';
-import outputs from '../../amplify_outputs.json';
+import rawOutputs from '../../amplify_outputs.json';
+
+type AmplifyCustomOutputs = {
+  custom?: {
+    API?: {
+      echolabHttpApi?: {
+        endpoint?: string;
+      };
+    };
+  };
+};
+
+const outputs = rawOutputs as typeof rawOutputs & AmplifyCustomOutputs;
 
 const normalizeBaseUrl = (url: string): string => url.replace(/\/+$/, '');
 
@@ -37,11 +49,16 @@ async function getAuthHeaders(): Promise<Record<string, string>> {
     
     return {
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
     };
   } catch (error) {
     throw new Error('Failed to get authentication token');
   }
+}
+
+function jsonHeaders(): Record<string, string> {
+  return {
+    'Content-Type': 'application/json',
+  };
 }
 
 async function handleResponse<T>(response: Response): Promise<T> {
@@ -68,7 +85,8 @@ async function handleResponse<T>(response: Response): Promise<T> {
 export const apiClient = {
   async get<T>(path: string, requireAuth = true): Promise<T> {
     const baseUrl = getBaseUrl();
-    const headers = requireAuth ? await getAuthHeaders() : { 'Content-Type': 'application/json' };
+    // Avoid forcing a CORS preflight by sending Content-Type on GET.
+    const headers = requireAuth ? await getAuthHeaders() : {};
     
     const response = await fetch(`${baseUrl}${path}`, {
       method: 'GET',
@@ -80,7 +98,10 @@ export const apiClient = {
   
   async post<T>(path: string, data?: any, requireAuth = true): Promise<T> {
     const baseUrl = getBaseUrl();
-    const headers = requireAuth ? await getAuthHeaders() : { 'Content-Type': 'application/json' };
+    const headers = {
+      ...(requireAuth ? await getAuthHeaders() : {}),
+      ...(data ? jsonHeaders() : {}),
+    };
     
     const response = await fetch(`${baseUrl}${path}`, {
       method: 'POST',
@@ -93,7 +114,10 @@ export const apiClient = {
   
   async put<T>(path: string, data: any, requireAuth = true): Promise<T> {
     const baseUrl = getBaseUrl();
-    const headers = requireAuth ? await getAuthHeaders() : { 'Content-Type': 'application/json' };
+    const headers = {
+      ...(requireAuth ? await getAuthHeaders() : {}),
+      ...jsonHeaders(),
+    };
     
     const response = await fetch(`${baseUrl}${path}`, {
       method: 'PUT',
@@ -106,7 +130,8 @@ export const apiClient = {
   
   async delete<T>(path: string, requireAuth = true): Promise<T> {
     const baseUrl = getBaseUrl();
-    const headers = requireAuth ? await getAuthHeaders() : { 'Content-Type': 'application/json' };
+    // Avoid forcing a CORS preflight by sending Content-Type on DELETE.
+    const headers = requireAuth ? await getAuthHeaders() : {};
     
     const response = await fetch(`${baseUrl}${path}`, {
       method: 'DELETE',

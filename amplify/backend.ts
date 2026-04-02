@@ -122,8 +122,17 @@ const httpApi = new HttpApi(apiStack, 'echolabHttpApi', {
   apiName: 'echolabHttpApi',
   corsPreflight: {
     allowOrigins: ['*'],
-    allowHeaders: ['*'],
-    allowMethods: [CorsHttpMethod.ANY],
+    // Explicitly allow the headers the browser will request for JWT + JSON.
+    // Using '*' here can be flaky depending on client and gateway behavior.
+    allowHeaders: ['authorization', 'content-type'],
+    allowMethods: [
+      CorsHttpMethod.OPTIONS,
+      CorsHttpMethod.GET,
+      CorsHttpMethod.POST,
+      CorsHttpMethod.PUT,
+      CorsHttpMethod.DELETE,
+      CorsHttpMethod.PATCH,
+    ],
   },
 });
 
@@ -146,6 +155,14 @@ httpApi.addRoutes({
   methods: [HttpMethod.ANY],
   integration,
   authorizer,
+});
+
+// Fallback for environments where gateway-level CORS preflight does not fully bypass auth:
+// explicitly handle OPTIONS without an authorizer.
+httpApi.addRoutes({
+  path: '/{proxy+}',
+  methods: [HttpMethod.OPTIONS],
+  integration,
 });
 
 backend.addOutput({
