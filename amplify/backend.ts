@@ -18,7 +18,9 @@ const backend = defineBackend({
   echolabApi,
 });
 
-const apiStack = backend.createStack('echolabApiStack');
+// Reuse the stack created for the function's resource group.
+// (Avoid creating a custom stack with the same name twice.)
+const apiStack = backend.echolabApi.stack;
 
 // Persistence for the FastAPI monolith
 const voicesTable = new Table(apiStack, 'VoicesTable', {
