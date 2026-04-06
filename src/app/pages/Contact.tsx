@@ -21,7 +21,7 @@ export function Contact() {
 
       <div className="grid md:grid-cols-2 gap-6 max-w-[900px] mx-auto mb-20">
         <a href="#" className="group border border-[#222] bg-[#0a0a0a] p-8 flex flex-col hover:border-[#444] transition-colors rounded-sm">
-          <BookOpen className="w-6 h-6 text-[#5e6ad2] mb-6" />
+          <BookOpen className="w-6 h-6 text-primary mb-6" />
           <h3 className="text-2xl text-white mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Documentation</h3>
           <p className="text-[#888] text-sm mb-8 flex-1">Read our comprehensive guides and API reference to integrate voice synthesis into your applications.</p>
           <div className="flex items-center gap-2 text-[#aaa] font-mono text-[13px] group-hover:text-white transition-colors">
@@ -30,7 +30,7 @@ export function Contact() {
         </a>
 
         <a href="#" className="group border border-[#222] bg-[#0a0a0a] p-8 flex flex-col hover:border-[#444] transition-colors rounded-sm">
-          <Code className="w-6 h-6 text-[#5e6ad2] mb-6" />
+          <Code className="w-6 h-6 text-primary mb-6" />
           <h3 className="text-2xl text-white mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>API Reference</h3>
           <p className="text-[#888] text-sm mb-8 flex-1">Detailed endpoint documentation, authentication guides, and SDK examples for developers.</p>
           <div className="flex items-center gap-2 text-[#aaa] font-mono text-[13px] group-hover:text-white transition-colors">
@@ -39,7 +39,7 @@ export function Contact() {
         </a>
 
         <a href="#" className="group border border-[#222] bg-[#0a0a0a] p-8 flex flex-col hover:border-[#444] transition-colors rounded-sm">
-          <MessageSquare className="w-6 h-6 text-[#5e6ad2] mb-6" />
+          <MessageSquare className="w-6 h-6 text-primary mb-6" />
           <h3 className="text-2xl text-white mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>Community</h3>
           <p className="text-[#888] text-sm mb-8 flex-1">Join our Discord community to ask questions, share projects, and learn from other developers.</p>
           <div className="flex items-center gap-2 text-[#aaa] font-mono text-[13px] group-hover:text-white transition-colors">
@@ -48,7 +48,7 @@ export function Contact() {
         </a>
 
         <a href="https://github.com/pedroVelosoFernandes/echolab-p2" target="_blank" rel="noopener noreferrer" className="group border border-[#222] bg-[#0a0a0a] p-8 flex flex-col hover:border-[#444] transition-colors rounded-sm">
-          <Github className="w-6 h-6 text-[#5e6ad2] mb-6" />
+          <Github className="w-6 h-6 text-primary mb-6" />
           <h3 className="text-2xl text-white mb-3" style={{ fontFamily: '"Playfair Display", serif' }}>GitHub</h3>
           <p className="text-[#888] text-sm mb-8 flex-1">Check out our open source examples, starter templates, and contribute to the community.</p>
           <div className="flex items-center gap-2 text-[#aaa] font-mono text-[13px] group-hover:text-white transition-colors">
@@ -57,8 +57,8 @@ export function Contact() {
         </a>
       </div>
 
-      <div className="max-w-[600px] mx-auto border border-[#222] bg-[#111] p-10 rounded-sm relative shadow-[0_0_50px_-15px_rgba(94,106,210,0.15)] mt-16">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-[#5e6ad2]" />
+      <div className="max-w-[600px] mx-auto border border-[#222] bg-[#111] p-10 rounded-sm relative shadow-[0_0_50px_-15px_rgba(255,107,53,0.15)] mt-16">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
         <div className="text-center mb-8">
           <h3 className="text-[28px] text-white mb-2 mt-2" style={{ fontFamily: '"Playfair Display", serif' }}>Need help?</h3>
           <p className="text-[#666] text-xs font-mono">Send us a message directly</p>
@@ -90,7 +90,7 @@ export function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full bg-[#5e6ad2] hover:bg-[#4b55a8] text-white py-3 text-sm font-medium transition-colors rounded-sm flex items-center justify-center gap-2"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 text-sm font-medium transition-colors rounded-sm flex items-center justify-center gap-2"
           >
             Send Message
           </button>

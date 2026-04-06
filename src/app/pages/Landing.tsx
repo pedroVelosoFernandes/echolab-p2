@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { Mic, Zap, Shield, Home as HomeIcon, ListMusic, Music, Settings, BarChart, ChevronRight, Play, FolderOpen, FileAudio, Package, Calendar, Radio, Headphones, ChevronDown, Sparkles, Lightbulb, Star, MoreHorizontal, Mic2, Sliders, Check, Volume2, Plus, Wifi, Pause, Monitor, Edit2, Trash2, Users, Link as LinkIcon, Github } from 'lucide-react';
+import { Mic, Shield, Home as HomeIcon, ListMusic, Music, Settings, Play, FolderOpen, FileAudio, Package, Calendar, Radio, Headphones, ChevronDown, Sparkles, Lightbulb, Star, MoreHorizontal, Mic2, Check, Volume2, Plus, Wifi, Pause, Edit2, Trash2, Users, Link as LinkIcon, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Use same backgrounds as dashboard for authenticity
@@ -22,14 +22,19 @@ export function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#5e6ad2] selection:text-white pb-24">
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-primary selection:text-white pb-24">
       {/* Header matching PublicLayout */}
       <header className="sticky top-0 z-50 bg-[#0a0a0a]">
         <div className="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link to="/" className="flex items-center gap-2 text-xl font-medium tracking-tight">
-              <div className="w-7 h-7 rounded-md bg-gradient-to-tr from-[#5e6ad2] to-[#8a94e8] flex items-center justify-center">
-                <Mic className="w-4 h-4 text-white" />
+            <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+              <div className="w-12 h-12 flex items-center justify-center">
+                <img
+                  src="/logo.svg"
+                  alt="EchoLab"
+                  className="w-12 h-12 object-contain"
+                  draggable={false}
+                />
               </div>
               EchoLab
             </Link>
@@ -45,7 +50,7 @@ export function Landing() {
               <Github className="w-4 h-4" />
               
             </a>
-            <Link to="/signin" className="bg-[#5e6ad2] text-white px-5 py-2 text-sm font-medium hover:bg-[#4b55a8] transition-colors flex items-center gap-2">
+            <Link to="/signin" className="bg-primary text-primary-foreground px-5 py-2 text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-2">
               Login
               <span className="flex items-center justify-center w-4 h-4 rounded text-[10px] bg-black/20 font-mono">L</span>
             </Link>
@@ -73,7 +78,7 @@ export function Landing() {
             Customize voices, save presets, and generate high-quality audio in seconds.
           </p>
           <div className="flex items-center justify-center">
-            <Link to="/signup" className="bg-[#5e6ad2] text-white px-10 py-4 font-medium hover:bg-[#4b55a8] transition-colors flex items-center justify-center text-lg">
+            <Link to="/signup" className="bg-primary text-primary-foreground px-10 py-4 font-medium hover:bg-primary/90 transition-colors flex items-center justify-center text-lg">
               Get Started
             </Link>
           </div>
@@ -135,7 +140,7 @@ export function Landing() {
             <aside className="w-[180px] flex flex-col bg-transparent z-10">
               <div className="px-3 py-3">
                 <button className="w-full flex items-center gap-2 hover:bg-[#1a1a1a] rounded px-2 py-1.5 transition-colors relative">
-                  <div className="w-5 h-5 rounded bg-[#5e6ad2] flex items-center justify-center flex-shrink-0">
+                  <div className="w-5 h-5 rounded bg-primary flex items-center justify-center flex-shrink-0">
                     <span className="font-medium text-white text-[11px]">E</span>
                   </div>
                   <span className="font-medium text-[#e6e6e6] text-[13px]">EchoLab</span>
@@ -206,9 +211,14 @@ export function Landing() {
 
       <footer className="border-t border-[#222] py-12 mt-20">
         <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center gap-2 text-lg font-medium tracking-tight mb-4 md:mb-0 text-white opacity-50">
-            <div className="w-5 h-5 rounded bg-white flex items-center justify-center">
-              <Mic className="w-3 h-3 text-black" />
+          <div className="flex items-center gap-2 text-xl font-extrabold tracking-tight mb-4 md:mb-0 text-white">
+            <div className="w-9 h-9 flex items-center justify-center">
+              <img
+                src="/logo.svg"
+                alt="EchoLab"
+                className="w-9 h-9 object-contain"
+                draggable={false}
+              />
             </div>
             EchoLab
           </div>
@@ -264,19 +274,19 @@ function MockHomeView() {
               <div>
                 <h2 className="text-xs font-medium text-gray-500 mb-4 uppercase tracking-wide">Start</h2>
                 <div className="space-y-1">
-                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group cursor-default">
+                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors group cursor-default">
                     <FileAudio className="w-4 h-4" /><span>Synthesize New Audio...</span>
                   </div>
-                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group cursor-default">
+                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors group cursor-default">
                     <FolderOpen className="w-4 h-4" /><span>Open Preset...</span>
                   </div>
-                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group cursor-default">
+                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors group cursor-default">
                     <Mic2 className="w-4 h-4" /><span>Browse Voices...</span>
                   </div>
-                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group cursor-default">
+                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors group cursor-default">
                     <Package className="w-4 h-4" /><span>Manage Message Packs...</span>
                   </div>
-                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group cursor-default">
+                  <div className="flex items-center gap-3 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors group cursor-default">
                     <Settings className="w-4 h-4" /><span>Settings...</span>
                   </div>
                 </div>
@@ -287,12 +297,12 @@ function MockHomeView() {
                   {['Landing', 'Pricing', 'Docs', 'Contact'].map((page, index) => (
                     <div key={index} className="block group cursor-default">
                       <div className="flex items-center justify-between py-1.5 hover:bg-[#1a1a1a] px-2 -mx-2 rounded transition-colors">
-                        <span className="text-sm text-[#4A9EFF] group-hover:text-[#5AA8FF]">{page}</span>
+                        <span className="text-sm text-white group-hover:text-gray-300">{page}</span>
                         <span className="text-xs text-gray-500">Link</span>
                       </div>
                     </div>
                   ))}
-                  <button className="flex items-center gap-2 px-0 py-1.5 text-sm text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors mt-2">
+                  <button className="flex items-center gap-2 px-0 py-1.5 text-sm text-white hover:text-gray-300 transition-colors mt-2">
                     <span>More...</span>
                   </button>
                 </div>
@@ -310,14 +320,14 @@ function MockHomeView() {
                       <h3 className="text-sm font-medium text-white mb-1">Get started with EchoLab</h3>
                       <p className="text-xs text-gray-400 mb-3">Learn how to select voices, create presets, and synthesize audio</p>
                       <div className="h-1 bg-[#242526] rounded-full overflow-hidden">
-                        <div className="h-full bg-[#4A9EFF] w-1/3" />
+                        <div className="h-full bg-primary w-1/3" />
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="border-l-2 border-[#4A9EFF] pl-3 py-1">
+                <div className="border-l-2 border-primary pl-3 py-1">
                   <h3 className="text-sm font-medium text-white mb-1 flex items-center gap-2">
-                    <Lightbulb className="w-4 h-4 text-[#4A9EFF]" />Learn the Fundamentals
+                    <Lightbulb className="w-4 h-4 text-yellow-500" />Learn the Fundamentals
                   </h3>
                 </div>
                 <div className="bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 hover:bg-[#1f1f1f] transition-colors">
@@ -384,8 +394,8 @@ function MockVoicesView() {
                       <div className="flex items-center gap-4">
                         <div className="flex-shrink-0">
                           {v.selected ? (
-                            <div className="w-4 h-4 rounded-full bg-[#5e6ad2] flex items-center justify-center">
-                              <Check className="w-2.5 h-2.5 text-white" />
+                            <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
+                              <Check className="w-2.5 h-2.5 text-black" />
                             </div>
                           ) : (
                             <div className="w-4 h-4 rounded-full border border-[#242526]" />
@@ -400,7 +410,7 @@ function MockVoicesView() {
                         <div className="w-px h-6 bg-[#242526] flex-shrink-0" />
                         <div className="flex items-center gap-4 flex-shrink-0">
                           <span className="text-xs text-gray-400 px-2 py-1 rounded bg-[#242526]/50">{v.qualities}</span>
-                          <span className="text-xs px-2 py-1 rounded bg-[#5e6ad2]/10 text-[#5e6ad2]">Enabled</span>
+                          <span className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">Enabled</span>
                           <button className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors rounded hover:bg-[#242526]">
                             <Volume2 className="w-4 h-4" />
                           </button>
@@ -427,8 +437,8 @@ function MockVoicesView() {
                       <div className="flex items-center gap-4">
                         <div className="flex-shrink-0">
                           {v.selected ? (
-                            <div className="w-4 h-4 rounded-full bg-[#5e6ad2] flex items-center justify-center">
-                              <Check className="w-2.5 h-2.5 text-white" />
+                            <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
+                              <Check className="w-2.5 h-2.5 text-black" />
                             </div>
                           ) : (
                             <div className="w-4 h-4 rounded-full border border-[#242526]" />
@@ -443,7 +453,7 @@ function MockVoicesView() {
                         <div className="w-px h-6 bg-[#242526] flex-shrink-0" />
                         <div className="flex items-center gap-4 flex-shrink-0">
                           <span className="text-xs text-gray-400 px-2 py-1 rounded bg-[#242526]/50">{v.qualities}</span>
-                          <span className="text-xs px-2 py-1 rounded bg-[#5e6ad2]/10 text-[#5e6ad2]">Enabled</span>
+                          <span className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">Enabled</span>
                           <button className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors rounded hover:bg-[#242526]">
                             <Volume2 className="w-4 h-4" />
                           </button>
@@ -612,7 +622,7 @@ function MockSynthesizeView() {
               </div>
 
               <div>
-                <button className="w-full px-4 py-2.5 bg-[#5e6ad2] text-white rounded text-sm hover:bg-[#4b55a8] transition-all shadow-[0_0_15px_rgba(94,106,210,0.5)]">
+                <button className="w-full px-4 py-2.5 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-all shadow-[0_0_15px_rgba(255,107,53,0.5)]">
                   Generate Audio
                 </button>
               </div>
@@ -782,10 +792,10 @@ function MockLiveAnnouncementsView() {
             <div>
               <label className="text-xs font-medium text-gray-500 mb-2 block uppercase tracking-wide">Content Type</label>
               <div className="flex gap-3">
-                <button className="flex-1 px-4 py-3 bg-[#5e6ad2] border border-[#5e6ad2] text-white rounded transition-colors flex items-center justify-center gap-2">
+                <button className="flex-1 px-4 py-3 bg-primary border border-primary text-primary-foreground rounded transition-colors flex items-center justify-center gap-2">
                   <FileAudio className="w-4 h-4" /> Text
                 </button>
-                <button className="flex-1 px-4 py-3 bg-[#1a1a1a] border border-[#242526] text-gray-500 rounded transition-colors flex items-center justify-center gap-2 hover:border-[#5e6ad2]">
+                <button className="flex-1 px-4 py-3 bg-[#1a1a1a] border border-[#242526] text-gray-500 rounded transition-colors flex items-center justify-center gap-2 hover:border-primary">
                   <Package className="w-4 h-4" /> Message Pack
                 </button>
               </div>
@@ -795,7 +805,7 @@ function MockLiveAnnouncementsView() {
               <textarea
                 placeholder="Enter your announcement text..."
                 rows={4}
-                className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-[#5e6ad2]"
+                className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-primary"
                 defaultValue="Please welcome our new team members."
               />
             </div>
@@ -809,10 +819,10 @@ function MockLiveAnnouncementsView() {
             <div>
               <label className="text-xs font-medium text-gray-500 mb-2 block uppercase tracking-wide">Delivery Method</label>
               <div className="flex gap-3">
-                <button className="flex-1 px-4 py-3 bg-[#5e6ad2] border border-[#5e6ad2] text-white rounded transition-colors flex items-center justify-center gap-2">
+                <button className="flex-1 px-4 py-3 bg-primary border border-primary text-primary-foreground rounded transition-colors flex items-center justify-center gap-2">
                   <Users className="w-4 h-4" /> Recipients
                 </button>
-                <button className="flex-1 px-4 py-3 bg-[#1a1a1a] border border-[#242526] text-gray-500 rounded transition-colors flex items-center justify-center gap-2 hover:border-[#5e6ad2]">
+                <button className="flex-1 px-4 py-3 bg-[#1a1a1a] border border-[#242526] text-gray-500 rounded transition-colors flex items-center justify-center gap-2 hover:border-primary">
                   <LinkIcon className="w-4 h-4" /> Callback URL
                 </button>
               </div>
@@ -821,7 +831,7 @@ function MockLiveAnnouncementsView() {
               <div className="flex items-center justify-between mb-2">
                 <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">Select Recipients</label>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="rounded border-[#242526] text-[#5e6ad2] focus:ring-[#5e6ad2]" />
+                  <input type="checkbox" defaultChecked className="rounded border-[#242526] text-primary focus:ring-primary" />
                   <span className="text-xs text-gray-500">Send to all online</span>
                 </label>
               </div>
@@ -842,7 +852,7 @@ function MockLiveAnnouncementsView() {
                 </button>
               </div>
             </div>
-            <button className="w-full px-4 py-3 bg-[#5e6ad2] hover:bg-[#4b55a8] text-white text-sm rounded transition-colors flex items-center justify-center gap-2">
+            <button className="w-full px-4 py-3 bg-primary hover:bg-primary/90 text-primary-foreground text-sm rounded transition-colors flex items-center justify-center gap-2">
               <Play className="w-4 h-4" /> Send Announcement
             </button>
           </div>

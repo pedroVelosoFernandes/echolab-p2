@@ -5,7 +5,7 @@ import { useUserContext } from '../../hooks/useUserContext';
 import { Plus, X, Volume2, Check, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { PageHeader } from '../components/PageHeader';
-import contentBgImage from '../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png';
+import contentBgImage from "../../assets/8ae19cca138daf368a96bb8fbe23a98c7d881c2f.png";
 import { useVoices, useUserVoiceSelections } from '../../hooks/queries';
 import { useQueryClient } from '@tanstack/react-query';
 import { Tutorial, useTutorial } from '../components/Tutorial';
@@ -29,16 +29,16 @@ export function Voices() {
     );
 
     let newSelections: VoiceSelection[];
-    
+
     if (isSelected) {
       // Check if this is the only voice selected for this language
       const voicesInLanguage = voices.filter(v => v.language === voice.language && v.enabled);
       const selectionsInLanguage = selectedVoices.filter(s => s.language === voice.language);
-      
+
       if (selectionsInLanguage.length <= 1 && voicesInLanguage.length > 1) {
         return;
       }
-      
+
       // Remove selection for this language/gender combo
       newSelections = selectedVoices.filter(
         s => !(s.language === voice.language && s.gender === voice.gender)
@@ -56,11 +56,11 @@ export function Voices() {
         }
       ];
     }
-    
+
     // Optimistic update
     const previousSelections = selectedVoices;
     queryClient.setQueryData(['userVoiceSelections'], newSelections);
-    
+
     try {
       // Update all selections at once
       await apiClient.put('/me/voice-selections', {
@@ -72,6 +72,20 @@ export function Voices() {
       // Revert on error
       queryClient.setQueryData(['userVoiceSelections'], previousSelections);
       toast.error(error.message || 'Failed to update voice selection');
+    }
+  }
+
+  async function handleDeleteVoice(voice: Voice) {
+    if (!confirm(`Are you sure you want to delete the voice "${voice.displayName || voice.voiceKey}"?`)) {
+      return;
+    }
+
+    try {
+      await apiClient.delete(`/admin/voices/${voice.voiceId}`);
+      toast.success('Voice deleted successfully');
+      queryClient.invalidateQueries({ queryKey: ['voices'] });
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to delete voice');
     }
   }
 
@@ -150,6 +164,7 @@ export function Voices() {
                               isAdmin={userContext?.isAdmin ?? false}
                               onSelect={toggleVoiceSelection}
                               isSelected={isVoiceSelected(voice)}
+                              onDelete={handleDeleteVoice}
                             />
                           ))}
                         </div>
@@ -168,6 +183,7 @@ export function Voices() {
                               isAdmin={userContext?.isAdmin ?? false}
                               onSelect={toggleVoiceSelection}
                               isSelected={isVoiceSelected(voice)}
+                              onDelete={handleDeleteVoice}
                             />
                           ))}
                         </div>
@@ -186,6 +202,7 @@ export function Voices() {
                               isAdmin={userContext?.isAdmin ?? false}
                               onSelect={toggleVoiceSelection}
                               isSelected={isVoiceSelected(voice)}
+                              onDelete={handleDeleteVoice}
                             />
                           ))}
                         </div>
@@ -204,7 +221,7 @@ export function Voices() {
           onClose={() => setShowCreateModal(false)}
           onSuccess={() => {
             setShowCreateModal(false);
-            // fetchVoices(); - wait, react-query invalidates
+            queryClient.invalidateQueries({ queryKey: ['voices'] });
           }}
         />
       )}
@@ -223,11 +240,13 @@ function VoiceCard({
   isAdmin,
   onSelect,
   isSelected,
+  onDelete,
 }: {
   voice: Voice;
   isAdmin: boolean;
   onSelect: (voice: Voice) => void;
   isSelected: boolean;
+  onDelete: (voice: Voice) => void;
 }) {
   const qualities = voice.qualities?.join(', ') || '';
   
@@ -293,6 +312,18 @@ function VoiceCard({
           >
             <Volume2 className="w-5 h-5" />
           </button>
+
+          {isAdmin && (
+            <button
+              className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-destructive transition-colors rounded-lg hover:bg-destructive/10"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(voice);
+              }}
+            >
+              <Trash2 className="w-5 h-5" />
+            </button>
+          )}
         </div>
       </div>
     </div>

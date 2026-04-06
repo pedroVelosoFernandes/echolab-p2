@@ -76,7 +76,7 @@ export function SignUp() {
             ) : (
               <>
                 Already have an account?{' '}
-                <Link to="/signin" className="text-[#5e6ad2] font-medium hover:text-[#4e5ac2]">
+                <Link to="/signin" className="text-primary font-medium hover:text-primary/90">
                   Sign in
                 </Link>
               </>
@@ -102,7 +102,7 @@ export function SignUp() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5e6ad2] placeholder-gray-500"
+                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-500"
                   placeholder="you@example.com"
                   required
                 />
@@ -117,7 +117,7 @@ export function SignUp() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5e6ad2] placeholder-gray-500"
+                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-500"
                   placeholder="••••••••"
                   required
                   minLength={8}
@@ -130,7 +130,7 @@ export function SignUp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-4 py-2 bg-[#5e6ad2] text-white rounded-md hover:bg-[#4e5ac2] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Creating account...' : 'Sign up'}
               </button>
@@ -152,7 +152,7 @@ export function SignUp() {
                   id="code"
                   value={confirmationCode}
                   onChange={(e) => setConfirmationCode(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5e6ad2] placeholder-gray-500"
+                  className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-500"
                   placeholder="123456"
                   required
                 />
@@ -161,7 +161,7 @@ export function SignUp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-4 py-2 bg-[#5e6ad2] text-white rounded-md hover:bg-[#4e5ac2] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Confirming...' : 'Confirm'}
               </button>

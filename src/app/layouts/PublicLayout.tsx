@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router';
-import { Mic, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export function PublicLayout() {
   return (
@@ -7,9 +7,14 @@ export function PublicLayout() {
       <header className="sticky top-0 z-50 bg-[#0a0a0a]">
         <div className="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link to="/" className="flex items-center gap-2 text-xl font-medium tracking-tight">
-              <div className="w-7 h-7 rounded-md bg-gradient-to-tr from-[#5e6ad2] to-[#8a94e8] flex items-center justify-center">
-                <Mic className="w-4 h-4 text-white" />
+            <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+              <div className="w-12 h-12 flex items-center justify-center">
+                <img
+                  src="/logo.svg"
+                  alt="EchoLab"
+                  className="w-12 h-12 object-contain"
+                  draggable={false}
+                />
               </div>
               EchoLab
             </Link>
@@ -25,7 +30,7 @@ export function PublicLayout() {
               <Github className="w-4 h-4" />
               
             </a>
-            <Link to="/signin" className="bg-[#5e6ad2] text-white px-5 py-2 text-sm font-medium hover:bg-[#4b55a8] transition-colors flex items-center gap-2">
+            <Link to="/signin" className="bg-primary text-primary-foreground px-5 py-2 text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-2">
               Login
               <span className="flex items-center justify-center w-4 h-4 rounded text-[10px] bg-black/20 font-mono">L</span>
             </Link>
@@ -37,9 +42,14 @@ export function PublicLayout() {
       </main>
       <footer className="border-t border-[#222] py-12 mt-20">
         <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center gap-2 text-lg font-medium tracking-tight mb-4 md:mb-0 text-white opacity-50">
-            <div className="w-5 h-5 rounded bg-white flex items-center justify-center">
-              <Mic className="w-3 h-3 text-black" />
+          <div className="flex items-center gap-2 text-xl font-extrabold tracking-tight mb-4 md:mb-0 text-white">
+            <div className="w-9 h-9 flex items-center justify-center">
+              <img
+                src="/logo.svg"
+                alt="EchoLab"
+                className="w-9 h-9 object-contain"
+                draggable={false}
+              />
             </div>
             EchoLab
           </div>

@@ -56,9 +56,9 @@ export function Pricing() {
         </div>
 
         {/* Pro Plan */}
-        <div className="border border-[#5e6ad2] bg-[#0a0a0a] p-10 flex flex-col relative rounded-sm shadow-[0_0_50px_-15px_rgba(94,106,210,0.15)] relative">
+        <div className="border border-primary bg-[#0a0a0a] p-10 flex flex-col relative rounded-sm shadow-[0_0_50px_-15px_rgba(255,107,53,0.15)] relative">
           {/* Subtle top border highlight matching the image */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-[#5e6ad2]" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
 
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 mt-2">
             <h3 className="text-[28px] text-white" style={{ fontFamily: '"Playfair Display", serif' }}>Subscription</h3>
@@ -73,7 +73,7 @@ export function Pricing() {
           <div className="border border-[#333] bg-[#111] p-4 flex items-center justify-between mb-10 cursor-pointer hover:bg-[#1a1a1a] rounded-sm transition-colors group">
             <span className="text-white font-mono text-sm">Unlimited credits</span>
             <div className="flex items-center gap-3">
-              <span className="bg-[#5e6ad2]/20 text-[#5e6ad2] px-2 py-1 text-xs font-mono rounded-sm">Save 25%</span>
+              <span className="bg-primary/20 text-primary px-2 py-1 text-xs font-mono rounded-sm">Save 25%</span>
               <ChevronDown className="w-4 h-4 text-[#666] group-hover:text-white transition-colors" />
             </div>
           </div>
@@ -100,7 +100,7 @@ export function Pricing() {
           <div>
             <Link
               to="/signup"
-              className="block w-full text-center py-3 bg-[#5e6ad2] text-white hover:bg-[#4b55a8] transition-colors font-medium text-sm rounded-sm"
+              className="block w-full text-center py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm rounded-sm"
             >
               Get Started
             </Link>

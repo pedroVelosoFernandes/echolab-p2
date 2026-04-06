@@ -375,7 +375,7 @@ export function Scheduling() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Morning Announcements"
-                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                   />
                 </div>
 
@@ -390,7 +390,7 @@ export function Scheduling() {
                       type="date"
                       value={formData.startDate}
                       onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
 
@@ -403,7 +403,7 @@ export function Scheduling() {
                       type="time"
                       value={formData.startTime}
                       onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
                 </div>
@@ -419,7 +419,7 @@ export function Scheduling() {
                       type="date"
                       value={formData.endDate}
                       onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
 
@@ -432,7 +432,7 @@ export function Scheduling() {
                       type="time"
                       value={formData.endTime}
                       onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                      className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
                 </div>
@@ -446,7 +446,7 @@ export function Scheduling() {
                   <select
                     value={formData.timezone}
                     onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
-                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF] h-auto"
+                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary h-auto"
                   >
                     {timezones.map((tz) => (
                       <option key={tz} value={tz}>{tz}</option>
@@ -465,7 +465,7 @@ export function Scheduling() {
                     value={formData.callbackUrl}
                     onChange={(e) => setFormData({ ...formData, callbackUrl: e.target.value })}
                     placeholder="https://api.example.com/callback"
-                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                    className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                   />
                 </div>
 
@@ -481,7 +481,7 @@ export function Scheduling() {
                         type="radio"
                         checked={formData.playbackSchedule?.type === 'specific-times'}
                         onChange={() => setFormData({ ...formData, playbackSchedule: { type: 'specific-times', times: [] } })}
-                        className="w-4 h-4 text-[#4A9EFF] focus:ring-[#4A9EFF] bg-[#1a1a1a] border-[#242526]"
+                        className="w-4 h-4 text-primary focus:ring-primary bg-[#1a1a1a] border-[#242526]"
                       />
                       <span className="text-base text-foreground">Specific Times</span>
                     </label>
@@ -490,7 +490,7 @@ export function Scheduling() {
                         type="radio"
                         checked={formData.playbackSchedule?.type === 'interval'}
                         onChange={() => setFormData({ ...formData, playbackSchedule: { type: 'interval', intervalMinutes: 30 } })}
-                        className="w-4 h-4 text-[#4A9EFF] focus:ring-[#4A9EFF] bg-[#1a1a1a] border-[#242526]"
+                        className="w-4 h-4 text-primary focus:ring-primary bg-[#1a1a1a] border-[#242526]"
                       />
                       <span className="text-base text-foreground">Interval</span>
                     </label>
@@ -504,7 +504,7 @@ export function Scheduling() {
                           value={newTime}
                           onChange={(e) => setNewTime(e.target.value)}
                           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTime())}
-                          className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                          className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                         />
                         <button
                           onClick={addTime}
@@ -540,7 +540,7 @@ export function Scheduling() {
                           ...formData,
                           playbackSchedule: { ...formData.playbackSchedule!, intervalMinutes: parseInt(e.target.value) || 30 }
                         })}
-                        className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                        className="w-full bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                       />
                     </div>
                   )}
@@ -558,7 +558,7 @@ export function Scheduling() {
                         type="radio"
                         checked={formData.daysSelection?.type === 'week'}
                         onChange={() => setFormData({ ...formData, daysSelection: { type: 'week', weekDays: [] } })}
-                        className="w-4 h-4 text-[#4A9EFF] focus:ring-[#4A9EFF] bg-[#1a1a1a] border-[#242526]"
+                        className="w-4 h-4 text-primary focus:ring-primary bg-[#1a1a1a] border-[#242526]"
                       />
                       <span className="text-base text-foreground">Days of Week</span>
                     </label>
@@ -567,7 +567,7 @@ export function Scheduling() {
                         type="radio"
                         checked={formData.daysSelection?.type === 'month'}
                         onChange={() => setFormData({ ...formData, daysSelection: { type: 'month', monthDays: [] } })}
-                        className="w-4 h-4 text-[#4A9EFF] focus:ring-[#4A9EFF] bg-[#1a1a1a] border-[#242526]"
+                        className="w-4 h-4 text-primary focus:ring-primary bg-[#1a1a1a] border-[#242526]"
                       />
                       <span className="text-base text-foreground">Days of Month</span>
                     </label>
@@ -600,8 +600,8 @@ export function Scheduling() {
                               }}
                               className={`px-4 py-2 border rounded text-sm transition-colors ${
                                 isSelected
-                                  ? 'bg-[#4A9EFF] border-[#4A9EFF] text-white'
-                                  : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-[#4A9EFF]'
+                                  ? 'bg-primary border-primary text-primary-foreground'
+                                  : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                               }`}
                             >
                               {name}
@@ -621,7 +621,7 @@ export function Scheduling() {
                           onChange={(e) => setMonthDaysInput(e.target.value)}
                           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addMonthDay())}
                           placeholder="Day(s) (e.g., 1-5, 9, 10-20)"
-                          className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                          className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                         />
                         <button
                           onClick={addMonthDay}
@@ -660,7 +660,7 @@ export function Scheduling() {
                       onChange={(e) => setNewArea(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addPlaybackArea())}
                       placeholder="Enter area name"
-                      className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#4A9EFF]"
+                      className="flex-1 bg-[#1a1a1a] border border-[#242526] rounded px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                     <button
                       onClick={addPlaybackArea}
@@ -702,8 +702,8 @@ export function Scheduling() {
                             onClick={() => toggleMessagePack(packId)}
                             className={`px-4 py-2 border rounded text-sm transition-colors ${
                               formData.messagePacks?.includes(packId)
-                                ? 'bg-[#4A9EFF] border-[#4A9EFF] text-white'
-                                : 'bg-[#1a1a1a] border-[#242526] text-foreground hover:border-[#4A9EFF]'
+                                ? 'bg-primary border-primary text-primary-foreground'
+                                : 'bg-[#1a1a1a] border-[#242526] text-foreground hover:border-primary'
                             }`}
                           >
                             {pack.name}
@@ -721,7 +721,7 @@ export function Scheduling() {
                       type="checkbox"
                       checked={formData.canBeInterrupted}
                       onChange={(e) => setFormData({ ...formData, canBeInterrupted: e.target.checked })}
-                      className="w-4 h-4 rounded border-[#242526] text-[#4A9EFF] focus:ring-[#4A9EFF]"
+                      className="w-4 h-4 rounded border-[#242526] text-primary focus:ring-primary"
                     />
                     <span className="text-sm font-medium text-muted-foreground uppercase tracking-wide flex items-center gap-2">
                       <AlertCircle className="w-4 h-4" />
@@ -743,8 +743,8 @@ export function Scheduling() {
                         onClick={() => setFormData({ ...formData, priority: level })}
                         className={`w-12 h-12 rounded border transition-colors text-base ${
                           formData.priority === level
-                            ? 'bg-[#4A9EFF] border-[#4A9EFF] text-white'
-                            : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-[#4A9EFF]'
+                            ? 'bg-primary border-primary text-primary-foreground'
+                            : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                         }`}
                       >
                         {level}
@@ -758,7 +758,7 @@ export function Scheduling() {
               <div className="flex gap-4 pt-6 border-t border-[#242526]">
                 <button
                   onClick={handleCreateAnnouncement}
-                  className="px-6 py-3 bg-[#4A9EFF] hover:bg-[#5AA8FF] text-white text-base font-medium rounded transition-colors"
+                  className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-medium rounded transition-colors"
                 >
                   Create Schedule
                 </button>
@@ -785,7 +785,7 @@ export function Scheduling() {
                   <p className="text-base">No scheduled announcements</p>
                   <button
                     onClick={() => setShowForm(true)}
-                    className="mt-4 text-[#4A9EFF] hover:text-[#5AA8FF] text-base font-medium"
+                    className="mt-4 text-primary hover:text-primary/80 text-base font-medium"
                   >
                     Create your first schedule
                   </button>

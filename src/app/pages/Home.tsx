@@ -56,39 +56,39 @@ export function Home() {
                 <div className="space-y-2">
                   <Link
                     to="/app/synthesize"
-                    className="flex items-center gap-4 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group"
+                    className="flex items-center gap-4 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors group"
                   >
                     <FileAudio className="w-5 h-5" />
                     <span>Synthesize New Audio...</span>
                   </Link>
-                  
+
                   <Link
                     to="/app/presets"
-                    className="flex items-center gap-4 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group"
+                    className="flex items-center gap-4 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors group"
                   >
                     <FolderOpen className="w-5 h-5" />
                     <span>Open Preset...</span>
                   </Link>
-                  
+
                   <Link
                     to="/app/voices"
-                    className="flex items-center gap-4 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group"
+                    className="flex items-center gap-4 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors group"
                   >
                     <Mic2 className="w-5 h-5" />
                     <span>Browse Voices...</span>
                   </Link>
-                  
+
                   <Link
                     to="/app/message-packs"
-                    className="flex items-center gap-4 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group"
+                    className="flex items-center gap-4 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors group"
                   >
                     <Package className="w-5 h-5" />
                     <span>Manage Message Packs...</span>
                   </Link>
-                  
+
                   <Link
                     to="/app/settings"
-                    className="flex items-center gap-4 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors group"
+                    className="flex items-center gap-4 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors group"
                   >
                     <Settings className="w-5 h-5" />
                     <span>Settings...</span>
@@ -107,13 +107,13 @@ export function Home() {
                       className="block group"
                     >
                       <div className="flex items-center justify-between py-2.5 hover:bg-[#1a1a1a] px-3 -mx-3 rounded-lg transition-colors">
-                        <span className="text-base text-[#4A9EFF] group-hover:text-[#5AA8FF]">{page.name}</span>
+                        <span className="text-base text-foreground group-hover:text-muted-foreground">{page.name}</span>
                         <span className="text-sm text-muted-foreground">Link</span>
                       </div>
                     </Link>
                   ))}
-                  
-                  <button className="flex items-center gap-3 px-0 py-2 text-base text-[#4A9EFF] hover:text-[#5AA8FF] transition-colors mt-4">
+
+                  <button className="flex items-center gap-3 px-0 py-2 text-base text-foreground hover:text-muted-foreground transition-colors mt-4">
                     <span>More...</span>
                   </button>
                 </div>
@@ -130,11 +130,11 @@ export function Home() {
                   className="bg-[#1a1a1a] border border-[#242526] rounded-xl p-6 hover:bg-[#1f1f1f] transition-colors cursor-pointer group"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#5e6ad2] to-[#7b85e0] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-[#7b85e0] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Sparkles className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-base font-medium text-foreground mb-2 group-hover:text-[#5e6ad2] transition-colors">Get started with EchoLab</h3>
+                      <h3 className="text-base font-medium text-foreground mb-2 transition-colors">Get started with EchoLab</h3>
                       <p className="text-sm text-muted-foreground mb-4">
                         Take a guided tour through all of EchoLab's features. This will walk you through synthesizing audio, managing voices, and configuring settings.
                       </p>

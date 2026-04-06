@@ -34,7 +34,10 @@ export function DashboardLayout() {
   if (authLoading || contextLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-sm text-muted-foreground">Loading...</div>
+        <div
+          className="h-8 w-8 animate-spin rounded-full border-4 border-primary/20 border-t-primary"
+          aria-label="Loading"
+        />
       </div>
     );
   }
@@ -76,12 +79,17 @@ export function DashboardLayout() {
         <div className="px-4 py-4" ref={dropdownRef}>
           <button
             onClick={() => setShowDropdown(!showDropdown)}
-            className="w-full flex items-center gap-3 hover:bg-[#1a1a1a] rounded-lg px-3 py-2 transition-colors relative"
+            className="w-full flex items-center gap-3 hover:bg-[#151515] rounded-lg px-3 py-2 transition-colors relative"
           >
-            <div className="w-8 h-8 rounded-md bg-accent flex items-center justify-center flex-shrink-0">
-              <span className="font-medium text-white text-base">E</span>
+            <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+              <img
+                src="/logo.svg"
+                alt="EchoLab"
+                className="w-8 h-8 object-contain"
+                draggable={false}
+              />
             </div>
-            <span className="font-medium text-[#e6e6e6] text-base">EchoLab</span>
+            <span className="font-semibold text-[#e6e6e6] text-base">EchoLab</span>
             <div className="flex items-center gap-1.5 ml-auto">
               {userContext?.isAdmin && (
                 <Shield className="w-4 h-4" style={{ color: 'rgb(242, 201, 76)' }} />

@@ -187,7 +187,7 @@ export function LiveAnnouncements() {
                   onClick={() => setContentType('text')}
                   className={`flex-1 px-5 py-4 border rounded transition-colors flex items-center justify-center gap-2 text-base ${
                     contentType === 'text'
-                      ? 'bg-primary border-primary text-white'
+                      ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                   }`}
                 >
@@ -198,7 +198,7 @@ export function LiveAnnouncements() {
                   onClick={() => setContentType('message-pack')}
                   className={`flex-1 px-5 py-4 border rounded transition-colors flex items-center justify-center gap-2 text-base ${
                     contentType === 'message-pack'
-                      ? 'bg-primary border-primary text-white'
+                      ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                   }`}
                 >
@@ -279,7 +279,7 @@ export function LiveAnnouncements() {
                   onClick={() => setDeliveryMethod('recipients')}
                   className={`flex-1 px-5 py-4 border rounded transition-colors flex items-center justify-center gap-2 text-base ${
                     deliveryMethod === 'recipients'
-                      ? 'bg-primary border-primary text-white'
+                      ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                   }`}
                 >
@@ -290,7 +290,7 @@ export function LiveAnnouncements() {
                   onClick={() => setDeliveryMethod('callback')}
                   className={`flex-1 px-5 py-4 border rounded transition-colors flex items-center justify-center gap-2 text-base ${
                     deliveryMethod === 'callback'
-                      ? 'bg-primary border-primary text-white'
+                      ? 'bg-primary border-primary text-primary-foreground'
                       : 'bg-[#1a1a1a] border-[#242526] text-muted-foreground hover:border-primary'
                   }`}
                 >
@@ -327,7 +327,7 @@ export function LiveAnnouncements() {
                         sendToAll || !recipient.isOnline
                           ? 'opacity-50 cursor-not-allowed bg-[#1a1a1a] border-[#242526] text-muted-foreground'
                           : selectedRecipients.includes(recipient.id)
-                          ? 'bg-primary border-primary text-white'
+                          ? 'bg-primary border-primary text-primary-foreground'
                           : 'bg-[#1a1a1a] border-[#242526] text-foreground hover:border-primary'
                       }`}
                     >
@@ -361,7 +361,7 @@ export function LiveAnnouncements() {
             {/* Send Button */}
             <button
               onClick={handleSend}
-              className="w-full px-5 py-4 bg-primary hover:bg-primary/90 text-white text-base font-medium rounded transition-colors flex items-center justify-center gap-2"
+              className="w-full px-5 py-4 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-medium rounded transition-colors flex items-center justify-center gap-2"
             >
               <Send className="w-5 h-5" />
               Send Announcement

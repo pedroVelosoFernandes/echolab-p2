@@ -2,60 +2,63 @@
 
 :root {
   --font-size: 13px;
-  
+
+  /* Brand Color - Change this to update the main color throughout the app */
+  --brand-color: #F97316;
+
   /* Linear Dark Theme Colors */
   --background: #121314;
   --foreground: #e6e6e6;
-  
+
   --card: #1a1a1a;
   --card-foreground: #e6e6e6;
-  
+
   --popover: #1a1a1a;
   --popover-foreground: #e6e6e6;
-  
-  --primary: #5e6ad2;
-  --primary-foreground: #ffffff;
-  
+
+  --primary: var(--brand-color);
+  --primary-foreground: #000000;
+
   --secondary: #1a1a1a;
   --secondary-foreground: #A6ABB2;
-  
+
   --muted: #151515;
   --muted-foreground: #A6ABB2;
-  
-  --accent: #5e6ad2;
+
+  --accent: var(--brand-color);
   --accent-foreground: #ffffff;
-  
+
   --destructive: #e5484d;
   --destructive-foreground: #ffffff;
-  
+
   --border: #2a2a2a;
   --input: #1a1a1a;
   --input-background: #1a1a1a;
   --input-border: #2a2a2a;
-  
+
   --switch-background: #3a3a3a;
-  
+
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  
-  --ring: #5e6ad2;
-  
+
+  --ring: var(--brand-color);
+
   --chart-1: #00a8c5;
-  --chart-2: #5e6ad2;
+  --chart-2: var(--brand-color);
   --chart-3: #f76b15;
   --chart-4: #ffc53d;
   --chart-5: #e5484d;
-  
+
   --radius: 0.5rem;
-  
+
   --sidebar: #101112;
   --sidebar-foreground: #A6ABB2;
-  --sidebar-primary: #5e6ad2;
+  --sidebar-primary: var(--brand-color);
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1a1a1a;
   --sidebar-accent-foreground: #e6e6e6;
   --sidebar-border: #1a1a1a;
-  --sidebar-ring: #5e6ad2;
+  --sidebar-ring: var(--brand-color);
   
   /* Text colors for utility classes */
   --text-primary: #e6e6e6;

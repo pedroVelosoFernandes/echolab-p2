@@ -289,7 +289,7 @@ export function Synthesize() {
                 <button
                   onClick={handleSynthesize}
                   disabled={loading || !text.trim()}
-                  className="w-full px-5 py-3.5 bg-primary text-primary-foreground rounded-lg text-base font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:shadow-[0_0_25px_rgba(139,92,246,0.7)]"
+                  className="w-full px-5 py-3.5 bg-primary text-primary-foreground rounded-lg text-base font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_0_15px_rgba(255,107,53,0.5)] hover:shadow-[0_0_25px_rgba(255,107,53,0.7)]"
                 >
                   {loading ? 'Generating...' : 'Generate Audio'}
                 </button>
@@ -482,21 +482,21 @@ function TipsDialog({
           <div className="space-y-6 text-base">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <code className="bg-[#2a2a3a] text-primary px-3 py-1.5 rounded-lg text-sm font-mono">pause[500ms]</code>
+                <code className="bg-[#2a2a3a] text-yellow-300 px-3 py-1.5 rounded-lg text-sm font-mono">pause[500ms]</code>
               </div>
               <p className="text-muted-foreground text-sm">Inserts a pause in the speech. Specify duration in milliseconds (e.g., 500ms, 1000ms).</p>
             </div>
 
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <code className="bg-[#2a2a3a] text-primary px-3 py-1.5 rounded-lg text-sm font-mono">characters[abc]</code>
+                <code className="bg-[#2a2a3a] text-yellow-300 px-3 py-1.5 rounded-lg text-sm font-mono">characters[abc]</code>
               </div>
               <p className="text-muted-foreground text-sm">Spells out each character individually. Useful for acronyms or letter-by-letter pronunciation.</p>
             </div>
 
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <code className="bg-[#2a2a3a] text-primary px-3 py-1.5 rounded-lg text-sm font-mono">numbers[123]</code>
+                <code className="bg-[#2a2a3a] text-yellow-300 px-3 py-1.5 rounded-lg text-sm font-mono">numbers[123]</code>
               </div>
               <p className="text-muted-foreground text-sm">Reads each digit separately instead of as a complete number (\"one two three\" vs \"one hundred twenty-three\").</p>
             </div>

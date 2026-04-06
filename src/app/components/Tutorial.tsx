@@ -138,7 +138,7 @@ export function Tutorial({ steps, isOpen, onClose }: TutorialProps) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.2 }}
-        className="fixed z-[60] bg-[#1a1a1a] border border-[#5e6ad2] rounded-xl shadow-2xl"
+        className="fixed z-[60] bg-[#1a1a1a] border border-primary rounded-xl shadow-2xl"
         style={{
           ...appliedStyles,
           maxWidth: '400px',
@@ -154,7 +154,7 @@ export function Tutorial({ steps, isOpen, onClose }: TutorialProps) {
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#5e6ad2] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                   <span className="text-sm font-bold text-white">{currentStep + 1}</span>
                 </div>
                 <span className="text-xs text-muted-foreground">
@@ -177,7 +177,7 @@ export function Tutorial({ steps, isOpen, onClose }: TutorialProps) {
 
           <div className="h-1 bg-[#242526] rounded-full overflow-hidden mb-6">
             <motion.div
-              className="h-full bg-[#5e6ad2]"
+              className="h-full bg-primary"
               initial={{ width: 0 }}
               animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
               transition={{ duration: 0.3 }}
@@ -196,7 +196,7 @@ export function Tutorial({ steps, isOpen, onClose }: TutorialProps) {
 
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-2 bg-[#5e6ad2] hover:bg-[#6b76db] text-white text-sm font-medium rounded-lg transition-colors"
+              className="flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-lg transition-colors"
             >
               {isLastStep ? (
                 <>

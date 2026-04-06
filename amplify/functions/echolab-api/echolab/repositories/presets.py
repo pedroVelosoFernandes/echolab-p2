@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
@@ -33,9 +34,10 @@ class PresetsRepository:
             "name": body.name,
             "language": body.language,
             "gender": body.gender,
-            "rate": float(body.rate),
-            "pitch": float(body.pitch),
-            "intonation": float(body.intonation),
+            # DynamoDB (boto3) does not support float; use Decimal.
+            "rate": Decimal(str(body.rate)),
+            "pitch": Decimal(str(body.pitch)),
+            "intonation": Decimal(str(body.intonation)),
         }
         self._table.put_item(Item=item)
         return item

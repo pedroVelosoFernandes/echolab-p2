@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from typing import Any, Dict, Optional, Tuple
+from xml.sax.saxutils import escape as _xml_escape
 
 import boto3
 from botocore.exceptions import ClientError
@@ -18,6 +20,101 @@ from echolab.schemas.synthesize import SynthesizeRequest
 
 def _sha256_hex(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+_COMMAND_RE = re.compile(r"(?i)\b(pause|characters|numbers)\[([^\]]*)\]")
+
+# Bump this when SSML generation changes to avoid serving stale cached audio.
+_SYNTH_CACHE_VERSION = 2
+
+
+def _format_percent(delta: float) -> str:
+    # Polly SSML accepts values like "-10%", "0%", "10%".
+    v = round(delta, 1)
+    if abs(v) < 0.05:
+        v = 0.0
+    s = f"{v:.1f}".rstrip("0").rstrip(".")
+    if s == "-0":
+        s = "0"
+    return f"{s}%"
+
+
+def _format_ratio_percent(ratio: float) -> str:
+    # SSML prosody rate accepts percentages relative to default (100% = normal).
+    pct = round(ratio * 100.0, 1)
+    s = f"{pct:.1f}".rstrip("0").rstrip(".")
+    return f"{s}%"
+
+
+def _clamp(v: float, lo: float, hi: float) -> float:
+    return max(lo, min(hi, v))
+
+
+def _to_ssml_text(raw_text: str) -> str:
+    """Convert custom inline commands to SSML-safe markup.
+
+    Supported commands:
+    - pause[500ms] / pause[1000] / pause[2s]
+    - characters[ABC]
+    - numbers[123]
+    """
+
+    parts: list[str] = []
+    last = 0
+    for m in _COMMAND_RE.finditer(raw_text or ""):
+        start, end = m.span()
+        if start > last:
+            parts.append(_xml_escape(raw_text[last:start]))
+
+        cmd = m.group(1).lower()
+        arg = (m.group(2) or "").strip()
+
+        if cmd == "pause":
+            # Normalize durations: "500" => "500ms"; allow "500ms" and "2s".
+            dur = arg
+            if dur.isdigit():
+                dur = f"{dur}ms"
+            if re.fullmatch(r"\d+(ms|s)", dur):
+                parts.append(f"<break time=\"{dur}\"/>")
+            else:
+                # If malformed, treat as literal text.
+                parts.append(_xml_escape(m.group(0)))
+        elif cmd == "characters":
+            parts.append(f"<say-as interpret-as=\"characters\">{_xml_escape(arg)}</say-as>")
+        elif cmd == "numbers":
+            parts.append(f"<say-as interpret-as=\"digits\">{_xml_escape(arg)}</say-as>")
+        else:
+            parts.append(_xml_escape(m.group(0)))
+
+        last = end
+
+    if last < len(raw_text or ""):
+        parts.append(_xml_escape(raw_text[last:]))
+
+    return "".join(parts)
+
+
+def _build_ssml(*, text: str, rate: float, pitch: float, intonation: float, domain: Optional[str]) -> str:
+    # Map [0.5, 1.5] to [50%, 150%] (100% is normal).
+    rate_pct = _format_ratio_percent(rate)
+
+    # Polly doesn't have a dedicated "intonation" control; we approximate it by
+    # letting it influence the final pitch multiplier.
+    effective_pitch = _clamp(pitch * intonation, 0.5, 1.5)
+    pitch_pct = _format_percent((effective_pitch - 1.0) * 100.0)
+
+    inner = _to_ssml_text(text)
+    inner = f"<prosody rate=\"{rate_pct}\" pitch=\"{pitch_pct}\">{inner}</prosody>"
+
+    if domain in {"news", "conversational"}:
+        inner = f"<amazon:domain name=\"{domain}\">{inner}</amazon:domain>"
+
+    return (
+        '<speak xmlns="http://www.w3.org/2001/10/synthesis" '
+        'xmlns:amazon="http://www.amazon.com/ssml">'
+        f"{inner}"
+        "</speak>"
+    )
 
 
 class SynthesizeService:
@@ -77,9 +174,21 @@ class SynthesizeService:
 
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="No voice available for language/gender")
 
-    def _cache_key(self, *, user_id: str, text: str, voice_id: str, rate: float, pitch: float, intonation: float) -> str:
+    def _cache_key(
+        self,
+        *,
+        user_id: str,
+        text: str,
+        voice_id: str,
+        voice_qualities: list[str],
+        rate: float,
+        pitch: float,
+        intonation: float,
+    ) -> str:
         settings = {
+            "v": _SYNTH_CACHE_VERSION,
             "voiceId": voice_id,
+            "qualities": sorted([q for q in (voice_qualities or []) if isinstance(q, str)]),
             "rate": rate,
             "pitch": pitch,
             "intonation": intonation,
@@ -99,10 +208,33 @@ class SynthesizeService:
         if not voice_key:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Voice misconfigured")
 
+        qualities = voice.get("qualities") or []
+        if not isinstance(qualities, list):
+            qualities = []
+        qualities = [q for q in qualities if isinstance(q, str)]
+
+        # Polly-specific tuning: engine (standard/neural) and domain (news/conversational).
+        engine: Optional[str] = None
+        qset = {q.lower() for q in qualities}
+        if "neural" in qset:
+            engine = "neural"
+        elif "standard" in qset:
+            engine = "standard"
+
+        domain: Optional[str] = None
+        if "conversational" in qset:
+            domain = "conversational"
+        elif "news" in qset:
+            domain = "news"
+
+        ssml = _build_ssml(text=body.text, rate=rate, pitch=pitch, intonation=intonation, domain=domain)
+        ssml_no_domain = ssml if domain is None else _build_ssml(text=body.text, rate=rate, pitch=pitch, intonation=intonation, domain=None)
+
         key = self._cache_key(
             user_id=ctx.userId,
             text=body.text,
             voice_id=voice["voiceId"],
+            voice_qualities=qualities,
             rate=rate,
             pitch=pitch,
             intonation=intonation,
@@ -120,11 +252,35 @@ class SynthesizeService:
                 pass
 
         if not cached:
-            polly_resp = self._polly.synthesize_speech(
-                Text=body.text,
-                OutputFormat="mp3",
-                VoiceId=voice_key,
-            )
+            polly_params: Dict[str, Any] = {
+                "Text": ssml,
+                "TextType": "ssml",
+                "OutputFormat": "mp3",
+                "VoiceId": voice_key,
+            }
+            if engine:
+                polly_params["Engine"] = engine
+
+            try:
+                polly_resp = self._polly.synthesize_speech(**polly_params)
+            except ClientError as e:
+                # If engine/domain/ssml combo isn't supported for this voice/region,
+                # try a couple of safe fallbacks while keeping SSML whenever possible.
+                try:
+                    if polly_params.get("Engine") and polly_params["Engine"] != "standard":
+                        polly_params["Engine"] = "standard"
+                        polly_resp = self._polly.synthesize_speech(**polly_params)
+                    elif domain is not None:
+                        polly_params["Text"] = ssml_no_domain
+                        polly_resp = self._polly.synthesize_speech(**polly_params)
+                    else:
+                        raise
+                except ClientError:
+                    if domain is not None and polly_params.get("Text") != ssml_no_domain:
+                        polly_params["Text"] = ssml_no_domain
+                        polly_resp = self._polly.synthesize_speech(**polly_params)
+                    else:
+                        raise e
             stream = polly_resp.get("AudioStream")
             if not stream:
                 raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Polly failed")
